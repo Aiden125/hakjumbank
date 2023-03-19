@@ -5,11 +5,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ *  DB와 통신하는 역할 xml과 비슷
+ * */
 @Repository
-@RequiredArgsConstructor
+@RequiredArgsConstructor // final 있는 애 생성자를 만들어줌
 public class MemberRepository {
+
     private final EntityManager em;
 
     // 회원가입
@@ -17,6 +22,7 @@ public class MemberRepository {
         em.persist(member);
     }
 
+    // 멤버 찾기
     public Member findOne(Long id) {
         return em.find(Member.class, id);
     }
@@ -29,7 +35,7 @@ public class MemberRepository {
 
     // 이름으로 멤버 찾기
     public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name=:name", Member.class)
+        return em.createQuery("select m from Member m where m.name=:name", Member.class) // m:name 은 파라미터를 뜻함
                 .setParameter("name", name)
                 .getResultList();
     }
