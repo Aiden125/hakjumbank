@@ -4,21 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.tomcat.jni.Address;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Getter @Setter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long mId;
 
-    private String name;
+    @Column(name = "membername")
+    private String memberName;
+
+    @Column(name = "password")
     private String password;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
 
 }

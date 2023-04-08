@@ -33,7 +33,7 @@ public class MemberService {
 
     // 중복회원 검증
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByName(member.getName()); // 완전 동시 방지를 위해 db에 유니크 키를 적용해줘야함
+        List<Member> findMembers = memberRepository.findByName(member.getMemberName()); // 완전 동시 방지를 위해 db에 유니크 키를 적용해줘야함
         if(!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
