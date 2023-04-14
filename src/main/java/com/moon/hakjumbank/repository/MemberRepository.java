@@ -35,7 +35,7 @@ public class MemberRepository {
 
     // 이름으로 멤버 찾기
     public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name=:name", Member.class) // m:name 은 파라미터를 뜻함
+        return em.createQuery("select m from Member m where m.memberName=:name", Member.class) // m:name 은 파라미터를 뜻함
                 .setParameter("name", name)
                 .getResultList();
     }

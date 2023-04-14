@@ -1,6 +1,7 @@
 package com.moon.hakjumbank.service;
 
 import com.moon.hakjumbank.domain.Member;
+import com.moon.hakjumbank.domain.Post;
 import com.moon.hakjumbank.repository.MemberRepository;
 import com.moon.hakjumbank.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,17 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Long createPost(Long memberId, int count) {
-        Member member = memberRepository.findByName()
+    public Long publishPost(Long memberId, String title, String content, int count) {
+
+        // 엔티티 조회
+        Member member = memberRepository.findOne(memberId);
+
+        Post post = Post.createPost(member, title, content);
+
+        postRepository.save(post);
+
+
+        return post.getPId();
     }
 
 }

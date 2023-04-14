@@ -18,7 +18,7 @@ public class PostRepository {
     private final EntityManager em;
 
     // 글작성하기
-    public void writPost(Post post) {
+    public void save(Post post) {
         em.persist(post);
     }
 
