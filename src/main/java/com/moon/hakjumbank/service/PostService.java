@@ -20,7 +20,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public Long publishPost(Long memberId, String title, String content, int count) {
+    public Long publishPost(Long memberId, String title, String content) {
 
         // 엔티티 조회
         Member member = memberRepository.findOne(memberId);
@@ -28,7 +28,6 @@ public class PostService {
         Post post = Post.createPost(member, title, content);
 
         postRepository.save(post);
-
 
         return post.getPId();
     }

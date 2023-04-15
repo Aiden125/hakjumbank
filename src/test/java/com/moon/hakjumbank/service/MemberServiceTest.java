@@ -31,7 +31,8 @@ public class MemberServiceTest {
     public void 회원가입() throws Exception {
         //given
         Member member = new Member();
-        member.setName("moon");
+        member.setMemberName("moon");
+        member.setPassword("1234");
 
         //when
         Long saveId = memberService.join(member);
@@ -44,10 +45,10 @@ public class MemberServiceTest {
     public void 중복_회원_예외() throws Exception {
         //given
         Member member1 = new Member();
-        member1.setName("moon1");
+        member1.setMemberName("moon1");
 
         Member member2 = new Member();
-        member2.setName("moon1");
+        member2.setMemberName("moon1");
 
         //when
         memberService.join(member1);
