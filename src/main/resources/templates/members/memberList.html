@@ -9,12 +9,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
+                <th>비고</th>
                 <th>이름</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="member : ${members}">
+                <td></td>
                 <td th:text="${member.memberName}"></td>
 <!--                <td th:text="${member?.memberName}"></td> 이렇게 쓰면 null인 경우 안쓴다라는 것-->
             </tr>
